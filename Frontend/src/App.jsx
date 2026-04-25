@@ -6,6 +6,7 @@ function App() {
   const [description, setDescription] = useState('');
   const [history, setHistory] = useState([]);
   const [aiAdvice, setAiAdvice] = useState('');
+  const [song, setSong] = useState('');
   const [loadingAI, setLoadingAI] = useState(false);
 
   // English emotions list
@@ -13,7 +14,7 @@ function App() {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/history');
+      const res = await fetch('/api/history');
       const data = await res.json();
       setHistory(data);
     } catch (error) { console.error(error); }
@@ -25,7 +26,7 @@ function App() {
   const handleClearHistory = async () => {
     if (confirm("Are you sure you want to clear all history?")) {
         try {
-            await fetch('http://localhost:3000/api/history', { method: 'DELETE' });
+            await fetch('/api/history', { method: 'DELETE' });
             setHistory([]);
             alert("History cleared! 🗑️");
         } catch (error) {
@@ -41,7 +42,7 @@ function App() {
     }
 
     // 1. Save to Backend
-    await fetch('http://localhost:3000/api/checkin', {
+    await fetch('/api/checkin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ emotion, description })
@@ -50,16 +51,18 @@ function App() {
     fetchHistory();
     setAiAdvice('');
     setLoadingAI(true);
+    setSong('');
 
     // 2. Ask AI (Always send 'therapist' persona)
     try {
-        const res = await fetch('http://localhost:3000/api/chat', {
+        const res = await fetch('/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ emotion, description, persona: 'therapist' }) 
         });
         const data = await res.json();
         setAiAdvice(data.advice);
+        setSong(data.song);
     } catch (err) {
         setAiAdvice("AI is sleeping... (Check backend connection)");
     } finally {
@@ -109,7 +112,24 @@ function App() {
                 <p style={{ margin: '5px 0 0', whiteSpace: 'pre-wrap', lineHeight: '1.5' }}>{aiAdvice}</p>
             </div>
         )}
-      </div>
+        
+        {song && (
+                    <div style={{ marginTop: '10px', borderTop: '1px dashed #ccc', paddingTop: '10px' }}>
+                        <p style={{ fontSize: '0.9em', color: '#555', marginBottom: '5px' }}>🎵 Music for your mood:</p>
+                        <iframe 
+                            width="100%" 
+                            height="250" 
+                            src={song} 
+                            title="YouTube video player" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowFullScreen
+                            style={{ borderRadius: '8px' }}
+                        ></iframe>
+                    </div>
+                )}
+            </div>
+
 
       <div style={{ marginTop: '40px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>

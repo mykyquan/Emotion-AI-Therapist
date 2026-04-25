@@ -1,17 +1,20 @@
 // Backend/server.js
+require('dotenv').config();
+
 const express = require('express');
 const { createClient } = require('redis');
 const cors = require('cors');
+const yts = require('yt-search');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // Initialize Redis
-const redisClient = createClient();
+const redisClient = createClient({ url: process.env.REDIS_URL });
 redisClient.on('error', (err) => console.log('Redis Client Error', err));
 
 (async () => {
@@ -54,13 +57,39 @@ app.get('/api/history', async (req, res) => {
 
 // 🔥 API 3: Chat with Ollama (NEW!)
 app.post('/api/chat', async (req, res) => {
-    let { emotion, description, persona} = req.body;
-
+    let { emotion, description, persona } = req.body;
     if (!emotion) emotion = "Neutral";
-
+    const personaStyles = {
+        therapist: 'a warm and empathetic psychologist',
+        coach: 'an encouraging life coach',
+        friend: 'a supportive and caring friend',
+        mindfulness: 'a calm mindfulness guide'
+    };
+    const personaStyle = personaStyles[persona] || persona || 'a warm and empathetic psychologist';
+//Find a song based on emotion
+    let songUrl = "";
+    try {
+        const searchQuery = `${emotion} mood songs playlist lo-fi chill`;
+        
+      
+        const searchResults = await yts(searchQuery);
+        
+       
+        const videos = searchResults.videos.slice(0, 5);
+        
+        if (videos.length > 0) {
+            
+            const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+           
+            songUrl = `https://www.youtube.com/embed/${randomVideo.videoId}`;
+            console.log("Found song:", randomVideo.title);
+        }
+    } catch (err) {
+        console.error("Music search error:", err);
+    }
     // Create a prompt for the AI
     //Empathetic Therapist Persona
-    let prompt = `Roleplay as a warm and empathetic psychologist. 
+    let prompt = `Roleplay as ${personaStyle}. 
     The user is currently feeling: "${emotion}". 
     User's note: "${description}".
     
@@ -80,7 +109,10 @@ app.post('/api/chat', async (req, res) => {
         });
 
         const data = await response.json();
-        res.json({ advice: data.response });
+        res.json({
+             advice: data.response,
+            song: songUrl 
+        });
         
     } catch (error) {
         console.error("Error calling Ollama:", error);
