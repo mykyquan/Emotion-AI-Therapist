@@ -1,0 +1,35 @@
+{
+  "assistantName": "AI Assistant",
+  "welcomeMessage": "Hello! I am ready to help with whatever you are building.",
+  "systemPrompt": "You are a helpful AI assistant. Give clear, accurate, and practical responses. Ask clarifying questions when a request is ambiguous, and adapt your tone to the user and product experience.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f6f8fb",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#ffffff",
+      "text_color": "#1f2937",
+      "muted_color": "#5f6b7a",
+      "accent_color": "#008cba",
+      "selected_color": "#4caf50",
+      "reply_bg": "#e3f2fd"
+    },
+    "dark": {
+      "page_bg": "#111827",
+      "panel_bg": "#1f2937",
+      "nav_bg": "#0f172a",
+      "text_color": "#f8fafc",
+      "muted_color": "#cbd5e1",
+      "accent_color": "#38bdf8",
+      "selected_color": "#22c55e",
+      "reply_bg": "#172554"
+    }
+  },
+  "blockedKeywords": [],
+  "fallbackMessage": "I cannot process that request in this starter app. Please rephrase your message or customize the keyword interceptor in Backend/src/config/ai-config.json."
+}

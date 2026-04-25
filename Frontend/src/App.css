@@ -7,7 +7,9 @@
   --border-color: #d8dee8;
   --button-bg: #eef2f7;
   --input-bg: #ffffff;
-  --advice-bg: #e3f2fd;
+  --reply-bg: #e3f2fd;
+  --accent-color: #008cba;
+  --selected-color: #4caf50;
   --shadow-color: rgba(15, 23, 42, 0.1);
 }
 
@@ -20,7 +22,9 @@
   --border-color: #334155;
   --button-bg: #334155;
   --input-bg: #0f172a;
-  --advice-bg: #172554;
+  --reply-bg: #172554;
+  --accent-color: #38bdf8;
+  --selected-color: #22c55e;
   --shadow-color: rgba(0, 0, 0, 0.28);
 }
 
@@ -92,8 +96,8 @@ body {
 }
 
 .language-button.active {
-  background: #008cba;
-  border-color: #008cba;
+  background: var(--accent-color);
+  border-color: var(--accent-color);
   color: #ffffff;
 }
 
@@ -110,7 +114,7 @@ body {
   padding: 20px;
 }
 
-.checkin-card,
+.context-card,
 .journey-card {
   background: var(--panel-bg);
   border: 1px solid var(--border-color);
@@ -118,14 +122,65 @@ body {
   box-shadow: 0 4px 8px var(--shadow-color);
 }
 
-.checkin-card {
+.context-card {
   padding: 20px;
 }
 
-.advice-box {
+.welcome-message {
+  margin-top: -10px;
+  color: var(--muted-color);
+}
+
+.context-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.context-button {
+  padding: 10px;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.context-button.active {
+  background: var(--selected-color);
+  color: #ffffff;
+}
+
+.message-input {
+  width: 100%;
+  min-height: 120px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: var(--input-bg);
+  color: var(--text-color);
+  resize: vertical;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  background: var(--accent-color);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.reply-box {
   margin-top: 20px;
   padding: 15px;
-  background: var(--advice-bg);
+  background: var(--reply-bg);
   border-left: 5px solid rgb(33, 136, 50);
   border-radius: 8px;
 }
