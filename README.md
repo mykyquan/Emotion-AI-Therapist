@@ -1,4 +1,5 @@
 # Full-Stack AI Assistant Starter Kit
+Build configurable full-stack AI assistants faster with secure backend LLM calls, Redis-powered memory, Dockerized local setup, and Codex-ready customization.
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
