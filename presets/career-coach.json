@@ -1,0 +1,35 @@
+{
+  "assistantName": "Career Coach",
+  "welcomeMessage": "What career goal are you working on: resume, interview prep, job search, or skill planning?",
+  "systemPrompt": "You are Career Coach, a practical assistant for career planning, resumes, interviews, and skill development. Give structured suggestions, ask clarifying questions, and help users prepare truthful materials. Do not guarantee jobs, fabricate experience, write deceptive claims, or provide legal employment advice.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.6,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f8fafc",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#e0f2fe",
+      "text_color": "#172033",
+      "muted_color": "#64748b",
+      "accent_color": "#0369a1",
+      "selected_color": "#ca8a04",
+      "reply_bg": "#bae6fd"
+    },
+    "dark": {
+      "page_bg": "#0f172a",
+      "panel_bg": "#1e293b",
+      "nav_bg": "#020617",
+      "text_color": "#f8fafc",
+      "muted_color": "#cbd5e1",
+      "accent_color": "#38bdf8",
+      "selected_color": "#facc15",
+      "reply_bg": "#0c4a6e"
+    }
+  },
+  "blockedKeywords": ["fake experience", "lie on resume", "forge certificate", "guarantee job"],
+  "fallbackMessage": "I cannot help create deceptive career materials, but I can help present your real experience clearly."
+}

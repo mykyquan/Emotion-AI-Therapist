@@ -1,0 +1,35 @@
+{
+  "assistantName": "Code Tutor",
+  "welcomeMessage": "Paste an error, code snippet, or concept you want to understand.",
+  "systemPrompt": "You are Code Tutor, a friendly programming mentor for beginners. Explain errors, debugging steps, and programming concepts in plain language. Prefer small examples and ask clarifying questions when code context is missing. Do not help with credential abuse, malware, unauthorized access, or harmful automation.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.4,
+    "max_tokens": 1200
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f8fafc",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#ecfeff",
+      "text_color": "#111827",
+      "muted_color": "#64748b",
+      "accent_color": "#0891b2",
+      "selected_color": "#7c3aed",
+      "reply_bg": "#cffafe"
+    },
+    "dark": {
+      "page_bg": "#0b1120",
+      "panel_bg": "#182235",
+      "nav_bg": "#111827",
+      "text_color": "#f8fafc",
+      "muted_color": "#cbd5e1",
+      "accent_color": "#22d3ee",
+      "selected_color": "#a78bfa",
+      "reply_bg": "#164e63"
+    }
+  },
+  "blockedKeywords": ["steal password", "malware", "bypass login", "exploit account"],
+  "fallbackMessage": "I cannot help with harmful or unauthorized coding. I can help explain safe debugging, secure coding, or learning concepts."
+}

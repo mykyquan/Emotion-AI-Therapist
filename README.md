@@ -1,29 +1,53 @@
 # Full-Stack AI Assistant Starter Kit
 
+[English](README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933.svg)](https://nodejs.org/)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](docker-compose.yml)
 [![Status: Beta](https://img.shields.io/badge/Status-Beta-f59e0b.svg)](#public-beta-status)
 
-Build configurable AI assistant apps without starting from a blank repo.
+A lightweight, Codex-ready full-stack starter kit for building configurable AI assistant apps with secure backend LLM calls, Redis-backed prompt memory, Dockerized local development, and zero-code assistant customization through one JSON file.
 
-This is a public beta, open-source starter kit for full-stack AI assistant prototypes. It includes a React + Vite frontend, a Node.js/Express backend, Redis-backed conversation memory, Groq-hosted Llama 3 responses, Docker Compose, and one-file assistant customization through `Backend/src/config/ai-config.json`.
+It includes a React + Vite frontend, Node.js/Express backend, Redis conversation memory that is injected into the LLM prompt, Groq/Llama responses, Docker Compose, multilingual docs, ready-to-copy presets, and project-specific Codex guidance.
 
-Use it as a learning project, portfolio project, or reusable template for building focused assistants such as a study coach, customer support assistant, coding tutor, wellness companion, or internal knowledge helper.
+## Why Use This Starter Kit?
+
+- Many beginner AI apps expose API keys in frontend code.
+- This repo keeps LLM calls on the backend through a secure API proxy pattern.
+- It uses Redis-backed memory.
+- It uses one JSON config file for assistant behavior and theme.
+- It is intentionally lightweight compared with enterprise AI agent generators.
+- It is easier for students and junior developers to understand and customize.
+- Use this repo when you want Codex to customize an AI assistant app, not invent the whole architecture from scratch.
+
+## Why Clone This?
+
+This repo is designed for builders who want a real AI app foundation instead of another single-file chat demo.
+
+You get:
+
+- A working full-stack architecture with frontend, backend, Redis, and Docker
+- A backend-only LLM integration pattern that avoids exposing API keys in frontend code
+- Redis-backed memory that is actually included in the model context
+- A beginner-friendly config system for creating new assistant personas without rewriting code
+- Presets and docs that make the repo easy to customize with Codex or another AI coding assistant
+- Public-beta safety language that avoids overclaiming production readiness
 
 ## Who Is This For?
 
-- CS students learning full-stack AI app architecture
-- Junior developers building portfolio-ready projects
-- AI-assisted builders who want a reusable starter template
-- Developers who want a backend API pattern for LLM calls
-- People who want to avoid exposing LLM API keys in frontend code
+- **Junior engineers** learning how frontend, backend, Redis, Docker, and LLM APIs fit together in a real AI app.
+- **Frontend developers** who want a ready backend for secure AI calls instead of putting API keys in browser code.
+- **AI-assisted builders** who want Codex to customize an existing architecture rather than invent one from scratch.
+- **Portfolio builders** who want a clear, explainable full-stack AI project with practical engineering tradeoffs.
+- **Open-source maintainers** looking for a lightweight starter kit with docs, presets, safety notes, and verification commands.
+- **Developers building prototypes** such as study coaches, coding tutors, support assistants, sales helpers, language tutors, or internal knowledge assistants.
 
 ## What Can You Build With This?
 
 - Study coach
-- Customer support assistant
 - Coding tutor
+- Customer support assistant
 - Sales assistant
 - Wellness companion
 - Internal knowledge helper
@@ -68,34 +92,46 @@ Use it as a learning project, portfolio project, or reusable template for buildi
 +----------------+  +-------------------+
 ```
 
+## True AI Memory
+
+This starter kit includes Redis-backed assistant memory that is used by the model, not just displayed in the UI.
+
+When a user sends a message:
+
+1. The frontend sends the selected context and message to the backend.
+2. The backend stores recent prompt context in Redis.
+3. The chat route fetches a bounded recent history window from Redis.
+4. The prompt builder injects that recent history into the Groq message payload.
+5. The model receives the current message plus recent conversation context.
+
+This gives the assistant practical short-term memory while keeping the implementation easy to inspect and customize.
+
+Current memory is intentionally simple for learning and prototyping: it stores recent user/context entries. Projects that need richer production memory can extend this into role-based transcripts, summaries, user-scoped sessions, or retrieval-backed memory.
+
 ## Features
 
-- React + Vite frontend
-- Express backend API
-- Secure backend LLM API proxy pattern
-- Redis-backed conversation memory
-- Config-driven assistant behavior through `ai-config.json`
-- Groq/Llama 3 provider setup
-- Theme customization through JSON
-- Basic blocked keyword starter mechanism
-- Docker Compose setup
-- Local setup without Docker
-- Troubleshooting guidance for common setup issues
+- React + Vite frontend with chat UI, theme support, language switching, and prompt history
+- Express backend API that keeps Groq credentials out of browser code
+- Secure backend LLM API proxy pattern for Groq/Llama responses
+- True AI Memory: recent Redis history is injected into the LLM prompt, not only displayed in the UI
+- Bounded Redis memory window to keep assistant context useful and predictable
+- Config-driven assistant behavior through `Backend/src/config/ai-config.json`
+- Zero-code assistant customization for name, welcome message, system prompt, model settings, theme, blocked keywords, and fallback message
+- Ready-to-copy presets for Study Coach, Coding Tutor, Customer Support, Sales, Wellness, Language Tutor, and Career Coach use cases
+- Lightweight blocked keyword starter mechanism
+- 30-second provider timeout for external LLM calls
+- Graceful backend shutdown with safe Redis disconnect handling
+- Strict request validation for malformed payloads
+- Non-blocking frontend history save flow so chat can continue if Redis saving fails
+- Docker Compose setup with persistent Redis volume
+- Dynamic Docker ports for local development
+- Codex-ready `AGENTS.md`, docs, and optional config-generation skill
+- Multilingual documentation in English, Vietnamese, Traditional Chinese, and Simplified Chinese
+- `npm run doctor` readiness check
 
-The blocked keyword system is a lightweight starter mechanism. It is useful for prototypes and simple routing, but it is not a complete safety, moderation, or compliance system.
-
-## Prerequisites
-
-Choose one setup path:
-
-- **Docker path:** Docker Desktop or another Docker Compose compatible runtime
-- **Local path:** Node.js 18 or newer, npm, and Redis
-
-You also need a Groq API key.
+The blocked keyword system is a lightweight starter mechanism. It is not a complete safety, moderation, or compliance system.
 
 ## Quick Start With Docker
-
-This is the recommended path for most users because it runs the frontend, backend, and Redis together.
 
 1. Clone the repository. Replace `YOUR_GITHUB_USERNAME/YOUR_REPO_NAME` with the actual repository path:
 
@@ -104,64 +140,50 @@ git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME.git
 cd YOUR_REPO_NAME
 ```
 
-2. Set your Groq API key for Docker Compose.
-
-The simplest method is to pass it directly when you start the stack:
-
-```bash
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-You can also create a repo-root `.env` file next to `docker-compose.yml`:
+2. Create a repo-root `.env` file next to `docker-compose.yml`:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-Then run:
+3. Start the full stack:
 
 ```bash
 docker compose up --build
 ```
 
-3. Open the app:
+4. Open the app:
 
 ```text
 http://localhost:5173
 ```
 
-4. Stop the stack:
+5. Stop the stack:
 
 ```bash
 docker compose down
 ```
 
-## Dynamic Backend Port
-
-The backend container always runs on port `3000` internally, but Docker Compose lets you choose the host port with `BACKEND_PORT`.
-
-If port `3000` is already taken on your machine, run:
+Redis data is stored in the named Docker volume `redis_data`, so conversation history survives normal container recreation. To reset Docker Redis memory, remove volumes too:
 
 ```bash
-BACKEND_PORT=3001 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
+docker compose down -v
 ```
 
-Then the backend API is available on:
+### Dynamic Backend Port
 
-```text
-http://localhost:3001
-```
+The backend container runs on port `3000` internally, but Docker Compose lets you choose the host port with `BACKEND_PORT`.
 
-The frontend still runs at:
-
-```text
-http://localhost:5173
-```
-
-If the frontend port is also taken, you can change it with `FRONTEND_PORT`:
+If port `3000` is taken:
 
 ```bash
-BACKEND_PORT=3001 FRONTEND_PORT=5174 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
+BACKEND_PORT=3001 docker compose up --build
+```
+
+If the frontend port is also taken:
+
+```bash
+BACKEND_PORT=3001 FRONTEND_PORT=5174 docker compose up --build
 ```
 
 Then open:
@@ -171,8 +193,6 @@ http://localhost:5174
 ```
 
 ## Run Locally Without Docker
-
-Use this path if you want to run Node and Redis directly on your machine.
 
 1. Clone the repository:
 
@@ -233,26 +253,70 @@ npm run dev:frontend
 http://localhost:5173
 ```
 
-### Local Port Changes
-
-For local development without Docker, set the backend `PORT` in `Backend/.env`.
-
-If you change the backend to port `3001`, also point Vite's dev proxy at that port:
+If you change the backend to port `3001`, point Vite's dev proxy at that port:
 
 ```bash
 VITE_API_PROXY_TARGET=http://localhost:3001 npm run dev:frontend
 ```
 
+## Using Presets
+
+The `presets/` folder contains ready-to-copy examples:
+
+- `study-coach.json`
+- `coding-tutor.json`
+- `customer-support.json`
+- `sales-assistant.json`
+- `wellness-companion.json`
+- `language-tutor.json`
+- `career-coach.json`
+
+Copy a preset into the active config:
+
+```bash
+cp presets/study-coach.json Backend/src/config/ai-config.json
+```
+
+Validate the JSON:
+
+```bash
+node -e "JSON.parse(require('fs').readFileSync('Backend/src/config/ai-config.json', 'utf8')); console.log('ai-config.json OK')"
+```
+
+Restart the app after replacing the config. See `docs/presets.md` for details.
+
+## Using This Repo With Codex
+
+This repo includes `AGENTS.md` for Codex guidance and an optional `ai-assistant-config-generator` skill.
+
+Codex can generate, review, and validate `Backend/src/config/ai-config.json` while following project-specific safety and documentation rules.
+
+Use this repo when you want Codex to customize an AI assistant app, not invent the entire architecture from scratch.
+
+See `docs/codex.md` for example prompts and verification commands.
+
+This is not an official Codex plugin. It is repo-local guidance and an optional skill for a public beta starter kit.
+
+## Why This Works Well With Codex
+
+This repo gives Codex strong project rails:
+
+- `AGENTS.md` explains the project purpose, safety rules, important files, and verification commands.
+- `docs/codex.md` provides example prompts for common customization tasks.
+- `.agents/skills/ai-assistant-config-generator/SKILL.md` helps generate and validate `ai-config.json`.
+- `presets/` gives Codex concrete examples of assistant configurations.
+- `npm run doctor`, `npm run build`, `npm run lint`, and `docker compose config` make changes easy to verify.
+
+Use this repo when you want Codex to customize a working assistant app, not design the entire stack from a blank prompt.
+
 ## Claude-Assisted Config Workflow
 
-This is not an official installable Claude Skill package yet. It is a copy-paste Claude-assisted workflow that helps users generate `ai-config.json` faster.
-
-How it works:
+This is not an official installable Claude Skill package. It is a copy-paste Claude-assisted workflow that helps users generate `ai-config.json` faster.
 
 1. Copy the master prompt below into Claude.
-2. Describe the assistant you want to build.
+2. Describe the assistant you want.
 3. Claude generates a complete `ai-config.json`.
-4. Paste the generated JSON into `Backend/src/config/ai-config.json`.
+4. Paste it into `Backend/src/config/ai-config.json`.
 5. Restart the app.
 
 ### Master Prompt
@@ -264,94 +328,26 @@ I am using a Full-Stack AI Assistant Starter Kit built with React, Node.js, Redi
 
 Backend/src/config/ai-config.json
 
-Your job is to generate a high-quality ai-config.json for my app idea.
+Generate a high-quality ai-config.json for my app idea.
 
 App idea:
 <PASTE MY APP IDEA HERE>
 
 Return only valid JSON. Do not wrap it in Markdown. Do not include comments.
 
-The JSON must use exactly this top-level structure:
-
-{
-  "assistantName": "",
-  "welcomeMessage": "",
-  "systemPrompt": "",
-  "model_settings": {
-    "provider": "groq",
-    "model_name": "llama-3.3-70b-versatile",
-    "temperature": 0.7,
-    "max_tokens": 1024
-  },
-  "ui_theme": {
-    "light": {
-      "page_bg": "",
-      "panel_bg": "",
-      "nav_bg": "",
-      "text_color": "",
-      "muted_color": "",
-      "accent_color": "",
-      "selected_color": "",
-      "reply_bg": ""
-    },
-    "dark": {
-      "page_bg": "",
-      "panel_bg": "",
-      "nav_bg": "",
-      "text_color": "",
-      "muted_color": "",
-      "accent_color": "",
-      "selected_color": "",
-      "reply_bg": ""
-    }
-  },
-  "blockedKeywords": [],
-  "fallbackMessage": ""
-}
+Use the exact top-level structure from Backend/src/config/ai-config.json.
 
 Requirements:
-- assistantName should be short, memorable, and specific to the app.
-- welcomeMessage should greet the user and invite the first useful action.
-- systemPrompt should define the assistant's role, tone, target user, boundaries, and response style.
-- systemPrompt should include clear behavior rules for the app's domain.
-- blockedKeywords should include domain-specific terms that should be intercepted before reaching the model.
-- fallbackMessage should be polite, brief, and redirect the user toward an allowed request.
-- theme colors must be valid hex colors.
-- The light and dark themes should feel polished, readable, and appropriate for the app idea.
+- assistantName should be short, memorable, and specific.
+- welcomeMessage should invite the first useful action.
+- systemPrompt should define role, target user, tone, boundaries, allowed behavior, disallowed behavior, and response style.
+- blockedKeywords should be domain-specific but treated only as a lightweight starter mechanism.
+- fallbackMessage should be brief and redirect users toward allowed behavior.
+- Theme colors must be valid hex colors.
 - Keep provider as "groq".
-- Keep model_name as "llama-3.3-70b-versatile" unless I specifically request a different Groq model.
-- Choose temperature and max_tokens based on the app type.
-- Do not frame the assistant as a doctor, therapist, lawyer, financial advisor, or other licensed professional unless I explicitly provide a compliant product context.
-- Return only the finished JSON object.
+- Keep model_name as "llama-3.3-70b-versatile" unless I specifically request another Groq model.
+- Do not frame the assistant as a doctor, therapist, lawyer, financial advisor, or other licensed professional unless I provide a compliant product context.
 ```
-
-### Example App Ideas
-
-- "Study coach for high school biology students"
-- "Customer support assistant for a SaaS billing dashboard"
-- "JavaScript debugging tutor for beginners"
-- "Interview prep coach for product managers"
-- "Restaurant concierge for a boutique hotel"
-- "Internal HR policy assistant for a remote startup"
-
-## How To Customize
-
-Open:
-
-```text
-Backend/src/config/ai-config.json
-```
-
-Replace the file contents with your generated or hand-written JSON.
-
-After changing the config, restart the backend. If you are using Docker, rebuild the stack:
-
-```bash
-docker compose down
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-For more detail, see `docs/customization.md`.
 
 ## Environment Variables
 
@@ -380,15 +376,73 @@ FALLBACK_MESSAGE=I cannot process that request in this starter app.
 DEBUG_AI=false
 ```
 
-For Docker Compose, the most common command-level variables are:
+Set `DEBUG_AI=true` only when intentionally debugging locally. Do not enable it for real user traffic.
 
-```bash
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-BACKEND_PORT=3001 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-FRONTEND_PORT=5174 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
+## Project Structure
+
+```text
+.
+|-- Backend/
+|-- Frontend/
+|-- docs/
+|   |-- codex.md
+|   |-- customization.md
+|   `-- presets.md
+|-- presets/
+|-- .agents/
+|   `-- skills/
+|       `-- ai-assistant-config-generator/
+|           `-- SKILL.md
+|-- scripts/
+|   `-- doctor.js
+|-- docker-compose.yml
+|-- AGENTS.md
+|-- README.md
+|-- README.vi.md
+|-- README.zh-TW.md
+|-- README.zh-CN.md
+|-- CONTRIBUTING.md
+|-- SECURITY.md
+`-- LICENSE
 ```
 
-Set `DEBUG_AI=true` only when you intentionally want to log prompts and model responses during local debugging. Do not enable it for real user traffic.
+## Useful Commands
+
+```bash
+npm run install:all
+npm run dev:backend
+npm run dev:frontend
+npm run build
+npm run lint
+npm run doctor
+docker compose config
+docker compose up --build
+docker compose down
+```
+
+## Troubleshooting
+
+- Groq API key not configured: set `GROQ_API_KEY` in the repo-root `.env` for Docker or in `Backend/.env` for local development, then restart the backend.
+- Redis connection fails: make sure Redis is running. With Docker, use `docker compose up --build`; locally, run Redis and check `redis-cli ping`.
+- Docker port already in use: set `BACKEND_PORT=3001` or `FRONTEND_PORT=5174` before `docker compose up --build`.
+- `ai-config.json` invalid JSON: validate it with `node -e "JSON.parse(require('fs').readFileSync('Backend/src/config/ai-config.json', 'utf8')); console.log('ai-config.json OK')"`.
+- Changes to `Backend/src/config/ai-config.json` do not appear: restart the backend so the config is loaded again.
+- Docker Redis memory reset: Docker uses the `redis_data` volume for persistence; run `docker compose down -v` to remove it.
+
+## Security And Stability Notes
+
+This starter kit includes several production-inspired patterns while remaining an educational public beta:
+
+- Groq API keys stay on the backend and are never required in frontend code.
+- External LLM requests use a 30-second timeout.
+- Provider failures return controlled, user-friendly responses.
+- Request validation checks malformed payloads before processing.
+- The backend handles graceful shutdown for `SIGINT` and `SIGTERM`.
+- Redis connections are closed safely during shutdown.
+- Frontend chat submission continues even if saving prompt history fails.
+- Docker Redis memory is persisted through the `redis_data` named volume.
+
+This is still not production-ready by default. Before real public deployment, add authentication, rate limiting, monitoring, privacy review, stronger safety checks, and deployment-specific hardening.
 
 ## Security Checklist
 
@@ -397,8 +451,8 @@ Set `DEBUG_AI=true` only when you intentionally want to log prompts and model re
 - Keep `DEBUG_AI=false` unless debugging locally.
 - Do not log private user messages in production.
 - Rotate any API key that was ever committed by mistake.
-- Restrict `CORS_ORIGINS` to trusted frontend domains in production.
-- Review generated prompts before using them in sensitive domains.
+- Restrict CORS origins in production.
+- Review generated prompts before sensitive-domain use.
 - Add rate limiting before public deployment.
 - Do not commit Redis dumps, logs, or user data.
 
@@ -406,7 +460,7 @@ Set `DEBUG_AI=true` only when you intentionally want to log prompts and model re
 
 This project is an educational starter kit for building AI assistant prototypes. It is not intended to provide medical, legal, financial, mental health, or other professional advice.
 
-If you customize this starter kit for wellness, healthcare, HR, finance, legal, or other sensitive domains, you are responsible for adding appropriate safety checks, disclaimers, privacy protections, and human escalation paths.
+If users customize this starter kit for wellness, healthcare, HR, finance, legal, or other sensitive domains, they are responsible for adding appropriate safety checks, disclaimers, privacy protections, and human escalation paths.
 
 The included blocked keyword and fallback message system is a lightweight starter mechanism, not a complete safety or compliance system.
 
@@ -414,7 +468,7 @@ The included blocked keyword and fallback message system is a lightweight starte
 
 This repo is suitable for learning, prototyping, and portfolio use.
 
-It is not production-ready by default. Before real public deployment, add authentication, rate limiting, stronger safety checks, a persistence strategy, monitoring, privacy review, and deployment-specific security hardening.
+It is not production-ready by default. Developers should add auth, rate limiting, stronger safety checks, persistence strategy, monitoring, and privacy review before real public deployment.
 
 ## Portfolio Highlights
 
@@ -424,130 +478,9 @@ It is not production-ready by default. Before real public deployment, add authen
 - Redis-backed memory
 - Config-driven AI assistant behavior
 - Dockerized development workflow
+- Codex-ready repository guidance
+- Optional Codex config-generation skill
 - Claude-assisted config generation workflow
-
-## Project Structure
-
-```text
-.
-|-- Backend/
-|   |-- Dockerfile
-|   |-- server.js
-|   |-- package.json
-|   `-- src/
-|       |-- config/
-|       |   |-- ai-config.json
-|       |   `-- aiConfig.js
-|       |-- middleware/
-|       |-- prompts/
-|       |-- routes/
-|       `-- services/
-|-- Frontend/
-|   |-- Dockerfile
-|   |-- package.json
-|   |-- vite.config.js
-|   `-- src/
-|       |-- components/
-|       |-- i18n/
-|       |-- services/
-|       |-- App.jsx
-|       `-- main.jsx
-|-- docs/
-|   `-- customization.md
-|-- docker-compose.yml
-|-- package.json
-|-- CONTRIBUTING.md
-|-- SECURITY.md
-|-- LICENSE
-`-- README.md
-```
-
-## Useful Commands
-
-Install all dependencies:
-
-```bash
-npm run install:all
-```
-
-Run the backend locally:
-
-```bash
-npm run dev:backend
-```
-
-Run the frontend locally:
-
-```bash
-npm run dev:frontend
-```
-
-Run the full Docker stack:
-
-```bash
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-Run Docker with a different backend host port:
-
-```bash
-BACKEND_PORT=3001 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-Stop Docker containers:
-
-```bash
-docker compose down
-```
-
-Build the frontend:
-
-```bash
-npm run build
-```
-
-Run frontend lint:
-
-```bash
-npm run lint
-```
-
-## Troubleshooting
-
-### Port 3000 Is Already In Use
-
-Use the dynamic backend port:
-
-```bash
-BACKEND_PORT=3001 GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-### Redis Connection Fails Locally
-
-Make sure Redis is running:
-
-```bash
-redis-cli ping
-```
-
-If you are using Docker, Redis is included in `docker compose up --build`.
-
-### The Assistant Says Groq Is Not Configured
-
-Make sure `GROQ_API_KEY` is set in `Backend/.env` for local development or passed into Docker Compose:
-
-```bash
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
-
-### The UI Did Not Update After Changing `ai-config.json`
-
-Restart the backend. If you are using Docker, rebuild the stack:
-
-```bash
-docker compose down
-GROQ_API_KEY=your_groq_api_key_here docker compose up --build
-```
 
 ## License
 

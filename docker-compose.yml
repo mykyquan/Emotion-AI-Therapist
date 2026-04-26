@@ -1,6 +1,8 @@
 services:
   redis:
     image: redis:alpine
+    volumes:
+      - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
@@ -31,3 +33,6 @@ services:
       - "${FRONTEND_PORT:-5173}:5173"
     environment:
       VITE_API_PROXY_TARGET: http://backend:3000
+
+volumes:
+  redis_data:

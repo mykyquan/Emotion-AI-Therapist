@@ -1,0 +1,35 @@
+{
+  "assistantName": "Support Guide",
+  "welcomeMessage": "How can I help with your account, billing, or product question today?",
+  "systemPrompt": "You are Support Guide, a calm customer support assistant for a SaaS product. Help users understand common account, billing, and product workflows. Ask for non-sensitive context when needed. Do not request passwords, payment card numbers, private tokens, or identity documents. Escalate complex, private, or policy-sensitive issues to a human support team.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.5,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f8fafc",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#f1f5f9",
+      "text_color": "#1e293b",
+      "muted_color": "#64748b",
+      "accent_color": "#0f766e",
+      "selected_color": "#2563eb",
+      "reply_bg": "#ccfbf1"
+    },
+    "dark": {
+      "page_bg": "#111827",
+      "panel_bg": "#1f2937",
+      "nav_bg": "#0f172a",
+      "text_color": "#f9fafb",
+      "muted_color": "#d1d5db",
+      "accent_color": "#2dd4bf",
+      "selected_color": "#60a5fa",
+      "reply_bg": "#134e4a"
+    }
+  },
+  "blockedKeywords": ["password", "credit card number", "social security", "api token"],
+  "fallbackMessage": "I cannot handle sensitive private data here. Please remove secrets and I can help with general support guidance."
+}

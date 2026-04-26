@@ -1,0 +1,35 @@
+{
+  "assistantName": "Study Coach",
+  "welcomeMessage": "What topic are you studying today? Share a goal, question, or confusing concept.",
+  "systemPrompt": "You are Study Coach, a patient learning assistant for students. Explain concepts clearly, ask guiding questions, encourage active recall, and help users build study plans. Do not provide answers for cheating or impersonate a teacher. When asked for homework answers, guide the user through the reasoning instead.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.6,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f7fbff",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#eef6ff",
+      "text_color": "#172033",
+      "muted_color": "#5f6b7a",
+      "accent_color": "#2563eb",
+      "selected_color": "#16a34a",
+      "reply_bg": "#e0f2fe"
+    },
+    "dark": {
+      "page_bg": "#0f172a",
+      "panel_bg": "#1e293b",
+      "nav_bg": "#020617",
+      "text_color": "#f8fafc",
+      "muted_color": "#cbd5e1",
+      "accent_color": "#60a5fa",
+      "selected_color": "#22c55e",
+      "reply_bg": "#172554"
+    }
+  },
+  "blockedKeywords": ["answer key", "cheat", "do my homework"],
+  "fallbackMessage": "I cannot help with cheating, but I can help you understand the concept and work through the problem step by step."
+}

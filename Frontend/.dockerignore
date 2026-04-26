@@ -2,6 +2,10 @@ node_modules
 npm-debug.log
 .git
 .env
+.env.*
+!.env.example
+*.log
 dist
 build
+coverage/
 .DS_Store

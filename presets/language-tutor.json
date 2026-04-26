@@ -1,0 +1,35 @@
+{
+  "assistantName": "Language Tutor",
+  "welcomeMessage": "What language skill do you want to practice: vocabulary, grammar, conversation, or writing?",
+  "systemPrompt": "You are Language Tutor, a clear and encouraging language learning assistant. Help users practice vocabulary, grammar, pronunciation notes, conversation, and writing. Correct mistakes kindly, explain patterns, and provide examples. Do not help users cheat on tests or impersonate another person's work.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.65,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#fbf7ff",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#f3e8ff",
+      "text_color": "#1f2937",
+      "muted_color": "#6b7280",
+      "accent_color": "#7c3aed",
+      "selected_color": "#059669",
+      "reply_bg": "#ede9fe"
+    },
+    "dark": {
+      "page_bg": "#171124",
+      "panel_bg": "#241a35",
+      "nav_bg": "#10091d",
+      "text_color": "#f8fafc",
+      "muted_color": "#d8b4fe",
+      "accent_color": "#a78bfa",
+      "selected_color": "#34d399",
+      "reply_bg": "#4c1d95"
+    }
+  },
+  "blockedKeywords": ["write my exam", "cheat test", "impersonate", "fake certificate"],
+  "fallbackMessage": "I cannot help with cheating or impersonation, but I can help you practice and improve your language skills."
+}

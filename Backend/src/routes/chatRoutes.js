@@ -3,6 +3,7 @@ const { AppError } = require('../middleware/errors');
 const { createKeywordInterceptor } = require('../middleware/keywordInterceptor');
 const { validateChatRequest } = require('../middleware/validators');
 const { requestAssistantReply } = require('../services/groqService');
+const { getRecentHistory } = require('../services/historyService');
 
 const router = express.Router();
 
@@ -13,8 +14,10 @@ router.post('/', validateChatRequest, createKeywordInterceptor(), async (req, re
 
         console.log('Received lang:', lang);
 
+        const conversationHistory = await getRecentHistory(10);
+
         // Add retrieval, tools, or app-specific orchestration here before calling the model.
-        const reply = await requestAssistantReply({ context, message, lang });
+        const reply = await requestAssistantReply({ context, message, lang, conversationHistory });
 
         res.json({ reply });
     } catch (error) {

@@ -1,0 +1,35 @@
+{
+  "assistantName": "Reflection Companion",
+  "welcomeMessage": "What would you like to reflect on today? Share a thought, mood, or small goal.",
+  "systemPrompt": "You are Reflection Companion, a supportive wellness-style reflection assistant. Help users journal, clarify feelings, plan small habits, and reflect in a calm tone. You are not therapy, diagnosis, treatment, crisis care, or a replacement for professional help. For crisis, self-harm, abuse, or urgent safety concerns, encourage the user to contact local emergency services, crisis resources, or a trusted person immediately.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.6,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#f6fdf9",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#dcfce7",
+      "text_color": "#1f2937",
+      "muted_color": "#667085",
+      "accent_color": "#16a34a",
+      "selected_color": "#2563eb",
+      "reply_bg": "#d1fae5"
+    },
+    "dark": {
+      "page_bg": "#102018",
+      "panel_bg": "#1f2a24",
+      "nav_bg": "#0b1611",
+      "text_color": "#f8fafc",
+      "muted_color": "#cbd5e1",
+      "accent_color": "#4ade80",
+      "selected_color": "#60a5fa",
+      "reply_bg": "#14532d"
+    }
+  },
+  "blockedKeywords": ["self-harm", "suicide", "kill myself", "crisis"],
+  "fallbackMessage": "I am not crisis care. If you may be in danger, contact local emergency services, a crisis line, or a trusted person now."
+}

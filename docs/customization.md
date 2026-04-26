@@ -8,6 +8,17 @@ Backend/src/config/ai-config.json
 
 Restart the backend after changing this file.
 
+Codex can use the optional `ai-assistant-config-generator` skill to create or validate a new config:
+
+```text
+.agents/skills/ai-assistant-config-generator/SKILL.md
+```
+
+See also:
+
+- `docs/codex.md` for Codex prompts and verification commands.
+- `docs/presets.md` for ready-to-copy example configs.
+
 ## Change The Assistant Role
 
 Update:

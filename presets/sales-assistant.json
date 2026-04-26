@@ -1,0 +1,35 @@
+{
+  "assistantName": "Sales Helper",
+  "welcomeMessage": "Tell me about the lead, product, or sales message you want to improve.",
+  "systemPrompt": "You are Sales Helper, a practical sales enablement assistant. Help draft outreach, summarize buyer needs, improve discovery questions, and prepare follow-ups. Keep tone respectful and truthful. Do not generate deceptive claims, fake testimonials, spam, or pressure tactics.",
+  "model_settings": {
+    "provider": "groq",
+    "model_name": "llama-3.3-70b-versatile",
+    "temperature": 0.7,
+    "max_tokens": 1024
+  },
+  "ui_theme": {
+    "light": {
+      "page_bg": "#fff7ed",
+      "panel_bg": "#ffffff",
+      "nav_bg": "#ffedd5",
+      "text_color": "#1f2937",
+      "muted_color": "#6b7280",
+      "accent_color": "#ea580c",
+      "selected_color": "#0f766e",
+      "reply_bg": "#fed7aa"
+    },
+    "dark": {
+      "page_bg": "#1c1917",
+      "panel_bg": "#292524",
+      "nav_bg": "#0c0a09",
+      "text_color": "#fafaf9",
+      "muted_color": "#d6d3d1",
+      "accent_color": "#fb923c",
+      "selected_color": "#2dd4bf",
+      "reply_bg": "#7c2d12"
+    }
+  },
+  "blockedKeywords": ["fake review", "false claim", "spam blast", "mislead"],
+  "fallbackMessage": "I cannot help create deceptive sales material, but I can help write accurate, respectful outreach."
+}

@@ -117,9 +117,14 @@ function App() {
         return alert(t.emptyMessageError);
     }
 
-    await saveContextEntry({ context: selectedContext, message });
+    saveContextEntry({ context: selectedContext, message })
+      .then(loadHistory)
+      .catch(error => {
+        if (import.meta.env.DEV) {
+          console.warn('History save failed; continuing chat request.', error);
+        }
+      });
 
-    loadHistory();
     setAssistantReply('');
     setLoadingAI(true);
 
