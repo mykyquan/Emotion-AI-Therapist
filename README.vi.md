@@ -2,12 +2,16 @@
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
+Bộ starter kit full-stack nhẹ, sẵn sàng dùng với Codex để xây dựng ứng dụng AI assistant có thể cấu hình, với backend LLM calls an toàn, Redis-backed prompt memory, Dockerized local development, và zero-code assistant customization thông qua một file JSON.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mykyquan/Full-Stack-AI-Assistant-Starter-Kit/main/docs/assets/demo.gif" width="800" alt="Full-Stack AI Assistant Demo">
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933.svg)](https://nodejs.org/)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](docker-compose.yml)
 [![Status: Beta](https://img.shields.io/badge/Status-Beta-f59e0b.svg)](#trang-thai-public-beta)
-
-Bộ starter kit full-stack nhẹ, sẵn sàng dùng với Codex để xây dựng ứng dụng AI assistant có thể cấu hình, với backend LLM calls an toàn, Redis-backed prompt memory, Dockerized local development, và zero-code assistant customization thông qua một file JSON.
 
 Dự án gồm React + Vite frontend, Node.js/Express backend, Redis conversation memory được inject vào LLM prompt, Groq/Llama responses, Docker Compose, multilingual docs, ready-to-copy presets, và project-specific Codex guidance.
 

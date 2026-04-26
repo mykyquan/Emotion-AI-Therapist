@@ -2,12 +2,16 @@
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
+A lightweight, Codex-ready full-stack starter kit for building configurable AI assistant apps with secure backend LLM calls, Redis-backed prompt memory, Dockerized local development, and zero-code assistant customization through one JSON file.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mykyquan/Full-Stack-AI-Assistant-Starter-Kit/main/docs/assets/demo.gif" width="800" alt="Full-Stack AI Assistant Demo">
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933.svg)](https://nodejs.org/)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](docker-compose.yml)
 [![Status: Beta](https://img.shields.io/badge/Status-Beta-f59e0b.svg)](#public-beta-status)
-
-A lightweight, Codex-ready full-stack starter kit for building configurable AI assistant apps with secure backend LLM calls, Redis-backed prompt memory, Dockerized local development, and zero-code assistant customization through one JSON file.
 
 It includes a React + Vite frontend, Node.js/Express backend, Redis conversation memory that is injected into the LLM prompt, Groq/Llama responses, Docker Compose, multilingual docs, ready-to-copy presets, and project-specific Codex guidance.
 

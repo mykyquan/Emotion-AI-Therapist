@@ -2,12 +2,16 @@
 
 [English](README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md)
 
+这是一个轻量、Codex-ready 的 full-stack starter kit，用于构建可配置的 AI assistant app，具备安全的 backend LLM calls、Redis-backed prompt memory、Dockerized local development，以及通过单个 JSON 文件进行 zero-code assistant customization。
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mykyquan/Full-Stack-AI-Assistant-Starter-Kit/main/docs/assets/demo.gif" width="800" alt="Full-Stack AI Assistant Demo">
+</p>
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933.svg)](https://nodejs.org/)
 [![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED.svg)](docker-compose.yml)
 [![Status: Beta](https://img.shields.io/badge/Status-Beta-f59e0b.svg)](#public-beta-状态)
-
-这是一个轻量、Codex-ready 的 full-stack starter kit，用于构建可配置的 AI assistant app，具备安全的 backend LLM calls、Redis-backed prompt memory、Dockerized local development，以及通过单个 JSON 文件进行 zero-code assistant customization。
 
 它包含 React + Vite frontend、Node.js/Express backend、会被 inject 到 LLM prompt 的 Redis conversation memory、Groq/Llama responses、Docker Compose、multilingual docs、ready-to-copy presets，以及 project-specific Codex guidance。
 
